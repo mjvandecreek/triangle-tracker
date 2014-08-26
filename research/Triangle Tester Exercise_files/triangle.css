@@ -1,0 +1,90 @@
+#triangle {
+	width: 750px;
+	height: 100%;
+	position: relative;
+}
+
+#triangle_form {
+	position: relative;
+	width: 300px;
+	height: 300px;
+	float: left;
+	height: auto;
+}
+
+#triangle_frame {
+	position: relative;
+	float: left;
+	border: 3px solid #224466;
+}
+
+#triangle_history {
+	float: right;
+	width: 390px;
+	left: 300px;
+	height: auto;
+}
+
+#canvas {
+	background: #FFFFFF none repeat scroll 0%;
+	height: 200px; 
+	width: 200px;
+	padding: 45px;
+	position: relative;
+}
+
+.side {
+	position: absolute;
+	z-index: 99999;
+}
+
+#side1_container {
+	bottom: 5px;
+	left: 120px;
+}
+
+#side2_container {
+	left: 10px; 
+	top: 40px;
+}
+
+#side3_container {
+	right: 10px; 
+	top: 40px;
+}
+
+#triangle_type {
+	font-weight: bold; 
+	font-size: 4em; 
+	position: absolute; 
+	top: 100px; 
+	width: 300px; 
+	text-align: center;
+}
+
+.triangle_row {
+	background-color: #eeeecc;
+	background-image: none;
+	float: left; 
+	border-top: 1px solid black;
+	height: auto;
+	padding: 0px 10px 0px 10px;
+}
+
+.triangle_data_cell {
+	float: left;
+	padding: 5px;
+	overflow: hidden;
+}
+
+.narrow {
+	width: 50px;
+}
+
+.wide {
+	width: 85px;
+}
+
+
+
+

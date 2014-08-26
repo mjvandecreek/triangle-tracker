@@ -1,0 +1,360 @@
+body {
+	color : #666666;
+	font-family : "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	background-color: gray;
+}
+
+.top {
+	width: 800px;
+}
+
+.bottom {
+	float:none;
+	clear:both;
+}
+
+.left_col {
+	width: 250px;
+	float: left;
+	background-color: white;
+	padding: 0;
+}
+
+.right_col {
+	float: right;
+	width: 495px;
+	padding: 10px 20px 10px 0;
+}
+
+#menu_left {
+	float: left;
+	width: 300px;
+	text-align: left;
+}
+
+.menu_item {
+	display: block;
+}
+
+#navbar {
+	padding: 10px 10px 0 0px;
+	font-size: 190%;
+	line-height: 160%;
+	font-weight: bold;
+	text-align: right;
+}
+
+#navbar a {
+	color: #4F376B;
+}
+
+#navbar a:hover {
+	font-size: 150%;
+	color: #33cc44;
+}
+
+#content {
+	border-top: 2px solid #4F376B;
+}
+
+.footer {
+	padding: 40px 0 0 0;
+	bottom: 0;
+	float: none;
+	clear: both;
+	width: 800px;
+	text-align: center;
+}
+
+#agilistrylogo {
+	width: 186px;
+	height: 125px;
+	padding: 15px 30px 0 0;
+	float: left;
+}
+
+.banner {
+	float: left;
+	width: 500px;
+}
+
+.tagline {
+	color: #AAAAAA;
+	font-size: 100%;
+	line-height: 120%;
+	font-weight: bold;
+	font-style: italic;
+	text-align: right;
+	padding: 10px 10px 0 0px;
+}
+
+.thumbnail {
+	margin: 0;
+	border: 0;
+}
+.container {
+	background-color: white;
+	margin: auto;
+	width: 800px;
+	padding: 0px 15px 20px 15px;
+	border-width: 2px;
+	border-color: #4F376B;
+	border-style: solid;
+	float: none;
+	clear: both;
+}
+	
+.heading {
+	text-align: left;
+	font-size: 120%;
+	color: #4F376B;
+	font-weight: bold;
+	padding: 0 0 0 0;
+}
+
+.event {
+	float: none;
+	clear: both;
+	text-align: left;
+	color: black;
+	padding: 20px 0 0 0;
+}
+
+.bigeventlogo {
+	margin: 10px 0 0 0;
+}
+
+.eventlogo {
+	width: 100px;
+	overflow: hidden;
+	float: right;
+	padding: 0 20px 0 0;
+}
+
+.event_date {
+	font-size: 90%;
+	color: gray;
+	font-style: italic;
+}
+
+.event_title {
+	font-size: 140%;
+	color: #33cc44;
+	font-weight: bold;
+}
+
+.event_abstract {
+	padding: 0 0 10px 0;
+}
+
+.sitepic {
+	width: 100px;
+}
+
+.gallery {
+	padding: 5px 0 10px 0;
+}
+
+.smtext {
+	font-size: 80%;
+	text-align: left;
+	padding: 0 0 0 10px;
+}
+
+a {
+	color: #006B9F;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #33cc44;
+}
+
+.title {
+	color: #AAAAAA;
+	font-size: 240%;
+	font-weight: bold;
+	margin: 6px 0 0 -3px;
+	text-align: center;
+}
+
+.centered {
+	text-align: center;
+}
+
+h1 {
+	color: #4F376B;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+#maillistsignup {
+	float: right;
+	border: 1px solid #4F376B;
+	width: 250px;
+	margin: 10px;
+	padding: 5px 10px 10px 10px;
+}
+
+.breadcrumbs {
+	float: none;
+	clear: both;
+	background-color: #DDDDDD;
+	width: 494px;
+	padding: 2px 5px 4px 1px;
+	font-size: 12px;
+	line-height: 100%;
+	text-align: right;
+	font-style: normal;
+	color: #666666;
+}
+
+.minigallery {
+	padding: 18px 0 0 0;
+	height: 55px;
+	overflow: hidden;
+}
+
+.eventblurbs {
+	height: 90px;
+	background: #DDDDDD;
+	border-left: 2px solid #DDDDDD;
+	border-right: 2px solid #DDDDDD;
+	padding: 5px 0px 0px 2px;
+}
+
+.eventblurbs_title {
+	text-align: center;
+	float: none;
+	clear: both;
+	font-size: 90%;
+	padding: 0px 0px 5px 0px;
+}
+
+.event_thumb {
+	font-size: 80%;
+	line-height: 110%;
+	float: left;
+	height: 60px;
+	overflow: hidden;
+	width: 31%;
+	text-align: center;
+	background: white;
+	margin: 0px 4px 0px 4px;
+	padding: 2px;
+}
+
+.imgright {
+	float: right;
+	width: 240px;
+	padding: 10px;
+}
+
+.indent {
+	margin: 0 0 0 25px;
+}
+
+.gallerycaption {
+	margin: 10px 0px 0px 0px;
+}
+
+.galleryimgcontainer {
+}
+
+.gallerynavprev {
+	float: left;
+	margin-top: 160px;
+	text-align: right;
+	height: 40px;
+	width: 40px;
+}
+
+.gallerynavnext {
+	float: left;
+	margin-top: 160px;
+	text-align: left;
+	height: 40px;
+	width: 40px;}
+
+.navarrow {
+	border: 0px;
+	margin: 0 10px 0 10px;
+}
+
+.galleryimg {
+	width: 400px;
+	float: left;
+}
+
+.gallerycarousel {
+	margin: 0 75px 0 80px;
+}
+
+.gallerythumbpanel {
+	margin: 3px 0 3px 2px;
+}
+
+.gallerythumb {
+	float: left;
+	width: 40px;
+	background-color: white;
+	height: 30px;
+	margin: 5px 3px 5px 3px;
+	overflow: hidden;
+}
+
+.gallerythumbpic {
+	width: 40px;
+	height: 30px;
+	border: 0;
+}
+
+.gallerypreview {
+	float: left;
+	width: 160px;
+	background-color: white;
+	height: 120px;
+	margin: 5px 3px 5px 3px;
+	overflow: hidden;
+}
+
+.gallerypreviewpic {
+	width: 160px;
+	height: 120px;
+	border: 0;
+}
+
+
+.selected {
+	margin: 0px 1px 0px 1px;
+	border: 5px solid #33cc44;
+}
+
+ul{
+ list-style-type: square;
+}
+
+ul li{
+	margin: 10px 0px 10px -10px;
+	padding: 0px;
+}
+
+
+
+.clearfloat {
+	float:none;
+	clear:both;
+}
+
+#included_event_blurbs {
+	width: 582px;
+	height: 115px;
+	margin: 10px 0px 10px 0px;
+	padding: 0px 0px 10px 0px;
+	overflow: hidden;
+	float: right;
+	background-color: #FFFFFF;
+	text-align: center;
+}
+

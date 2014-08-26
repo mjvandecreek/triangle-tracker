@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <title>java - Three integer inputs and determine the triangle type. 
+Is it Iso, scalene, or equilateral or output error. - Code Review Stack 
+Exchange</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/codereview/img/favicon.ico?v=8ddc1eb8f929">
+    <link rel="apple-touch-icon image_src" href="http://cdn.sstatic.net/codereview/img/apple-touch-icon.png?v=bb26b8631f86">
+    <link rel="search" type="application/opensearchdescription+xml" title="Code Review Stack Exchange" href="http://codereview.stackexchange.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@StackCodeReview">
+    <meta name="twitter:domain" content="codereview.stackexchange.com">
+    <meta name="og:type" content="website">
+    <meta name="og:image" content="http://cdn.sstatic.net/codereview/img/apple-touch-icon.png?v=bb26b8631f86">
+    <meta name="og:title" content="Three integer inputs and determine the triangle type. Is it Iso, scalene, or equilateral or output error.">
+    <meta name="og:description" content="The logic is simple. But I was wondering if anyone could point me into better rewriting the conditional logic? Also, the only error conditions i can think of are the sides should not be equal to or...">
+    <meta name="og:url" content="http://codereview.stackexchange.com/questions/18463/three-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ">
+    <link rel="canonical" href="http://codereview.stackexchange.com/questions/18463/three-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ">
+
+    
+    
+    <script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/quant.js" async=""></script><script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/beacon.js" async=""></script><script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/analytics.js" async=""></script><script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/adzerk2_2_17_76" async=""></script><script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/jquery.js"></script>
+    <script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/all.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Feed for question 'Three integer inputs and determine the triangle type. Is it Iso, scalene, or equilateral or output error.'" href="http://codereview.stackexchange.com/feeds/question/18463">
+    <script>
+        
+        StackExchange.ready(function () {
+            StackExchange.using("postValidation", function () {
+                StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+            });
+
+            
+            StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:18463});
+
+            styleCode();
+
+                StackExchange.realtime.subscribeToQuestion('196', '18463');
+            
+                    });
+    </script>
+
+                <script type="text/x-mathjax-config;executed=true">
+                    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+                                        tex2jax: { inlineMath: [ ["\\$", "\\$"] ], displayMath: [ ["$$","$$"], ["\\[", "\\]"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno" },
+                                        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+                                        messageStyle: "none"
+                });
+                </script>        
+            <script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/MathJax.js"></script>  
+
+    <script>
+        StackExchange.ready(function () {
+            StackExchange.realtime.init('wss://qa.sockets.stackexchange.com,ws://qa.sockets.stackexchange.com');
+            StackExchange.realtime.subscribeToInboxNotifications();
+                    StackExchange.realtime.subscribeToReputationNotifications('196');
+                StackExchange.realtime.subscribeToTopBarNotifications('196');
+        });
+    </script>
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1409003193,"networkMetaHostname":"meta.stackexchange.com","styleCode":true,"enableUserHovercards":true,"site":{"name":"Code Review Stack Exchange","description":"Q&A for peer programmer code reviews","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdsB7sSAAAAAAzjgEF_Hd8vXv-C42sa_KyofaGR","recaptchaAudioLang":"en","enableNewTagCreationWarning":false,"enableSocialMediaInSharePopup":true,"useGoogleOAuth2":true},"user":{"fkey":"96a6b8c4067578a97c966ad8674a6cee","isAnonymous":true}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"e16e98cf8344","js/moderator.en.js":"3bf88d4bfb80","js/full-anon.en.js":"a8c46cb7d8ef","js/full.en.js":"68352f8e7977","js/wmd.en.js":"42915fb09045","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"7f645ad852d1","js/help.en.js":"56d0a3a560ae","js/tageditor.en.js":"3d32a02c91b8","js/tageditornew.en.js":"e6769ab56a36","js/inline-tag-editing.en.js":"f3bc12920b00","js/revisions.en.js":"989c474e85a9","js/review.en.js":"e3964eae658d","js/tagsuggestions.en.js":"418b6018565f","js/post-validation.en.js":"90729e4378c3","js/explore-qlist.en.js":"24424eb238e8","js/events.en.js":"72b7ce3bfe9a","js/keyboard-shortcuts.en.js":"dd1a57e8f810","js/mathjax-editing.en.js":"f4495a4289d3"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+<script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/full-anon.js" async=""></script><script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/post-validation.js" async=""></script><script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/prettify-full.js" async=""></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Blank; src: url('about:blank')}
+.MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body class="question-page new-topbar" itemscope="" itemtype="http://schema.org/QAPage"><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px none; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div style="display: none;" id="MathJax_Message"></div>
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+<div class="topbar">
+    <div class="topbar-wrapper">
+        
+        <div class="js-topbar-dialog-corral">
+
+<div class="topbar-dialog siteSwitcher-dialog dno">
+    <div class="header">
+        <h3><a href="http://codereview.stackexchange.com/">current community</a></h3>
+    </div>
+    <div class="modal-content current-site-container">
+        <ul class="current-site">
+                <li>
+                        <div class="related-links">
+            <a href="http://chat.stackexchange.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+                    <a href="http://blog.stackexchange.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:7 })">blog</a>
+            </div>
+
+
+
+
+    <a href="http://codereview.stackexchange.com/" class="current-site-link site-link js-gps-track" data-id="196" data-gps-track="
+        site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-codereview" title="Code Review"></div>
+        Code Review
+    </a>
+
+                </li>
+                <li class="related-site">
+                        <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                    
+
+
+
+    <a href="http://meta.codereview.stackexchange.com/" class="site-link js-gps-track" data-id="198" data-gps-track="
+            site.switch({ target_site:198, item_type:3 }),
+        site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-codereviewmeta" title="Code Review Meta"></div>
+        Code Review Meta
+    </a>
+
+                </li>
+                    </ul>
+    </div>
+    
+    <div class="header" id="your-communities-header">
+        <h3>
+your communities        </h3>
+            
+    </div>
+    <div class="modal-content" id="your-communities-section">
+            
+            <div class="call-to-login">
+                        <a href="https://codereview.stackexchange.com/users/signup?returnurl=http%3a%2f%2fcodereview.stackexchange.com%2fquestions%2f18463%2fthree-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a>
+                    or
+                    <a href="https://codereview.stackexchange.com/users/login?returnurl=http%3a%2f%2fcodereview.stackexchange.com%2fquestions%2f18463%2fthree-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a>
+
+                    to customize your list.
+            </div>
+    </div>
+    
+    <div class="header">
+        <h3><a href="http://stackexchange.com/sites">more stack exchange communities</a></h3>
+    </div>
+    <div class="modal-content">
+            <div class="child-content"></div>
+    </div>
+</div>
+        </div>
+
+        <div class="network-items">
+            
+            <a href="http://stackexchange.com/" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 131 Stack Exchange sites">
+                <span class="hidden-text">Stack Exchange</span>
+            </a>
+            
+        </div>
+
+        <div class="topbar-links">
+            
+                <div class="links-container">
+                    <span class="topbar-menu-links">
+                            <a href="https://codereview.stackexchange.com/users/signup?returnurl=http%3a%2f%2fcodereview.stackexchange.com%2fquestions%2f18463%2fthree-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ" class="login-link">sign up</a>
+                            <a href="https://codereview.stackexchange.com/users/login?returnurl=http%3a%2f%2fcodereview.stackexchange.com%2fquestions%2f18463%2fthree-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ" class="login-link">log in</a>
+                            <a href="http://codereview.stackexchange.com/tour">tour</a>
+
+                            <a href="#" class="icon-help js-help-button" title="Help Center and other resources">
+        help
+        <span class="triangle"></span>
+    </a>
+    <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://codereview.stackexchange.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://codereview.stackexchange.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                    <li>
+                        <a href="http://meta.codereview.stackexchange.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                            Meta
+                            <span class="item-summary">
+                                Discuss the workings and policies of this site
+                            </span>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+
+                    </span>
+                </div>
+
+			<div class="search-container">
+                <form id="search" action="/search" method="get" autocomplete="off">
+                    <input name="q" placeholder="search" tabindex="1" autocomplete="off" maxlength="240" type="text">
+                </form>
+			</div>
+            	
+        </div>      
+    </div> 
+</div>
+<script>
+    StackExchange.ready(function () { StackExchange.topbar.init(); });
+</script>
+    <div class="container">
+        <div id="header" class="headeranon">
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://codereview.stackexchange.com/">
+                    Code Review
+                        <span class="beta-title">beta</span>
+                </a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs mainnavsanon">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://codereview.stackexchange.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://codereview.stackexchange.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://codereview.stackexchange.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://codereview.stackexchange.com/help/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://codereview.stackexchange.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://codereview.stackexchange.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+        <div id="content">
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+	<link itemprop="image" href="http://cdn.sstatic.net/codereview/img/apple-touch-icon.png">
+			<!--googleoff: all-->
+
+<div id="herobox-mini">
+    <div id="hero-content">
+        <span id="controls">
+            <a href="http://codereview.stackexchange.com/tour" id="tell-me-more" class="button">Take the 2-minute tour</a>
+            <span id="close"><a title="click to dismiss">×</a></span>
+        </span>
+        <div id="blurb">
+            Code Review Stack Exchange is a question and answer site for
+ peer programmer code reviews. It's 100% free, no registration required.
+        </div>        
+    </div>
+    <script>
+        $('#tell-me-more').click(function () {
+            var clickSource = $("body").attr("class") + '-mini';
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+            }
+
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("aboutpage.click", { aboutclick_location: clickSource } , true);
+            });
+        });
+        $('#herobox-mini #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "close" }, true);
+            });
+            $.cookie("hero", "none", { path: "/", expires: 365 });
+            var $hero = $("#herobox-mini");
+            $hero.slideUp('fast', function () { $hero.remove(); });
+            return false;
+        });
+    </script>
+</div>
+			<!--googleon: all-->
+			<div id="question-header">
+			<h1 itemprop="name"><a href="http://codereview.stackexchange.com/questions/18463/three-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ" class="question-hyperlink">Three integer inputs and determine the triangle type. Is it Iso, scalene, or equilateral or output error.</a></h1>
+		</div>
+			<div id="mainbar">
+
+			
+
+<div class="question" data-questionid="18463" id="question">
+
+        <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input name="_id_" value="18463" type="hidden">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">2</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+    
+    <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b></b></div>   
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+        <p>The logic is simple. But I was wondering if anyone could 
+point me into better rewriting the conditional logic? Also, the only 
+error conditions i can think of are the sides should not be equal to or 
+less than zero. Is there any other error conditions that seem to occur 
+to you? </p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">TriangleType</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pln"> getType</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> b</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> c</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">a</span><span class="pun">&lt;=</span><span class="lit">0</span><span class="pun">||</span><span class="pln">b</span><span class="pun">&lt;=</span><span class="lit">0</span><span class="pun">||</span><span class="pln">c</span><span class="pun">&lt;=</span><span class="lit">0</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">IllegalArgumentException</span><span class="pun">(</span><span class="str">"Length of sides cannot be equal to or less than zero"</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">a</span><span class="pun">==</span><span class="pln">b</span><span class="pun">&amp;&amp;</span><span class="pln">b</span><span class="pun">==</span><span class="pln">c</span><span class="pun">&amp;&amp;</span><span class="pln">c</span><span class="pun">==</span><span class="pln">a</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pun">.</span><span class="pln">EQUILATERAL</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pun">((</span><span class="pln">a</span><span class="pun">==</span><span class="pln">b</span><span class="pun">)||(</span><span class="pln">b</span><span class="pun">==</span><span class="pln">c</span><span class="pun">)||(</span><span class="pln">c</span><span class="pun">==</span><span class="pln">a</span><span class="pun">))</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pun">.</span><span class="pln">ISOSCELES</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">a</span><span class="pun">!=</span><span class="pln">b</span><span class="pun">&amp;&amp;</span><span class="pln">b</span><span class="pun">!=</span><span class="pln">c</span><span class="pun">&amp;&amp;</span><span class="pln">c</span><span class="pun">!=</span><span class="pln">a</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pun">.</span><span class="pln">SCALENE</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pun">.</span><span class="pln">ERROR</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> main</span><span class="pun">(</span><span class="typ">String</span><span class="pun">[]</span><span class="pln"> args</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="typ">System</span><span class="pun">.</span><span class="pln">out</span><span class="pun">.</span><span class="pln">println</span><span class="pun">(</span><span class="typ">TriangleType</span><span class="pun">.</span><span class="pln">getType</span><span class="pun">(</span><span class="lit">13</span><span class="pun">,</span><span class="pln"> </span><span class="lit">13</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">));</span><span class="pln">
+
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">
+ISOSCELES</span><span class="pun">(</span><span class="lit">0</span><span class="pun">),</span><span class="pln">
+EQUILATERAL</span><span class="pun">(</span><span class="lit">1</span><span class="pun">),</span><span class="pln">
+SCALENE</span><span class="pun">(</span><span class="lit">2</span><span class="pun">),</span><span class="pln">
+ERROR</span><span class="pun">(</span><span class="lit">3</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> n</span><span class="pun">;</span><span class="pln">
+</span><span class="typ">Triangle</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> n</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">{</span><span class="kwd">this</span><span class="pun">.</span><span class="pln">n </span><span class="pun">=</span><span class="pln"> n</span><span class="pun">;}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+    </div>
+    <div class="post-taglist">
+        <a href="http://codereview.stackexchange.com/questions/tagged/java" class="post-tag js-gps-track" title="show questions tagged 'java'" rel="tag">java</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://codereview.stackexchange.com/q/18463" title="short permalink to this question" class="short-link" id="link-post-18463">share</a><span class="lsep">|</span><a href="http://codereview.stackexchange.com/posts/18463/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2012-11-11 16:57:39Z" class="relativetime">Nov 11 '12 at 16:57</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://codereview.stackexchange.com/users/16199/phoenix"><div class="gravatar-wrapper-32"><img src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/14ccd71fb6d92f50984c9e861398839c.png" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://codereview.stackexchange.com/users/16199/phoenix">Phoenix</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">192</span><span title="2 silver badges"><span class="badge2"></span><span class="badgecount">2</span></span><span title="8 bronze badges"><span class="badge3"></span><span class="badgecount">8</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18463" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-18463" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="#" onclick=""></a>
+            </div>
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								3 Answers
+                                <span style="display:none;" itemprop="answerCount">3</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://codereview.stackexchange.com/questions/18463/three-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+        <a href="http://codereview.stackexchange.com/questions/18463/three-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+        <a class="youarehere" href="http://codereview.stackexchange.com/questions/18463/three-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+
+  
+<a name="18467"></a>
+<div id="answer-18467" class="answer" data-answerid="18467" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input name="_id_" value="18467" type="hidden">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You could encapsulate the conditions in a <code>PotentialTriangle</code> class. Note that the fields are of type <code>long</code> to avoid overflow when calculating whether triangle inequality is violated.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">PotentialTriangle</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">final</span><span class="pln"> </span><span class="kwd">long</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b</span><span class="pun">,</span><span class="pln"> c</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">PotentialTriangle</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> sideA</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> sideB</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> sideC</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        a </span><span class="pun">=</span><span class="pln"> sideA</span><span class="pun">;</span><span class="pln">
+        b </span><span class="pun">=</span><span class="pln"> sideB</span><span class="pun">;</span><span class="pln">
+        c </span><span class="pun">=</span><span class="pln"> sideC</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> isAnySideTooShort</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> a </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> b </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> c </span><span class="pun">&lt;=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> violatesTriangleInequality</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> a </span><span class="pun">&gt;</span><span class="pln"> b </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">||</span><span class="pln"> b </span><span class="pun">&gt;</span><span class="pln"> a </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">||</span><span class="pln"> c </span><span class="pun">&gt;</span><span class="pln"> a </span><span class="pun">+</span><span class="pln"> b</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> areSidesEqual</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> a </span><span class="pun">==</span><span class="pln"> b </span><span class="pun">&amp;&amp;</span><span class="pln"> b </span><span class="pun">==</span><span class="pln"> c</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">boolean</span><span class="pln"> areAtLeastTwoSidesEqual</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> a </span><span class="pun">==</span><span class="pln"> b </span><span class="pun">||</span><span class="pln"> b </span><span class="pun">==</span><span class="pln"> c </span><span class="pun">||</span><span class="pln"> c </span><span class="pun">==</span><span class="pln"> a</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>This would vastly simplify your enum selection code, which I would put directly into the enum:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">public</span><span class="pln"> </span><span class="kwd">enum</span><span class="pln"> </span><span class="typ">TriangleType</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    ISOSCELES</span><span class="pun">,</span><span class="pln">
+    EQUILATERAL</span><span class="pun">,</span><span class="pln">
+    SCALENE</span><span class="pun">;</span><span class="pln">
+
+    </span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">TriangleType</span><span class="pln"> ofPotentialTriangle</span><span class="pun">(</span><span class="typ">PotentialTriangle</span><span class="pln"> triangle</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        throwIf</span><span class="pun">(</span><span class="pln">triangle</span><span class="pun">.</span><span class="pln">isAnySideTooShort</span><span class="pun">(),</span><span class="pln"> 
+                </span><span class="str">"Length of sides cannot be equal to or less than zero"</span><span class="pun">);</span><span class="pln">
+        throwIf</span><span class="pun">(</span><span class="pln">triangle</span><span class="pun">.</span><span class="pln">violatesTriangleInequality</span><span class="pun">(),</span><span class="pln"> 
+                </span><span class="str">"Sum of any two sides must be larger than the remaining side"</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">triangle</span><span class="pun">.</span><span class="pln">areSidesEqual</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> EQUILATERAL</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">triangle</span><span class="pun">.</span><span class="pln">areAtLeastTwoSidesEqual</span><span class="pun">())</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> ISOSCELES</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> SCALENE</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> throwIf</span><span class="pun">(</span><span class="kwd">boolean</span><span class="pln"> condition</span><span class="pun">,</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> message</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">condition</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+            </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">IllegalArgumentException</span><span class="pun">(</span><span class="pln">message</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://codereview.stackexchange.com/a/18467" title="short permalink to this answer" class="short-link" id="link-post-18467">share</a><span class="lsep">|</span><a href="http://codereview.stackexchange.com/posts/18467/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://codereview.stackexchange.com/posts/18467/revisions" title="show all edits to this post">edited <span title="2012-11-11 18:54:04Z" class="relativetime">Nov 11 '12 at 18:54</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-11-11 18:37:10Z" class="relativetime">Nov 11 '12 at 18:37</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://codereview.stackexchange.com/users/9390/codesparkle"><div class="gravatar-wrapper-32"><img src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/f09e749873bc9b45407f82801d2a6dfc.jpg" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://codereview.stackexchange.com/users/9390/codesparkle">codesparkle</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">4,260</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="15 silver badges"><span class="badge2"></span><span class="badgecount">15</span></span><span title="39 bronze badges"><span class="badge3"></span><span class="badgecount">39</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18467" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-18467" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="18464"></a>
+<div id="answer-18464" class="answer" data-answerid="18464" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input name="_id_" value="18464" type="hidden">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">1</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>The code seems to work...</p>
+
+<p>For enhancements:</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">a </span><span class="pun">==</span><span class="pln"> b </span><span class="pun">&amp;&amp;</span><span class="pln"> b </span><span class="pun">==</span><span class="pln"> c </span><span class="pun">&amp;&amp;</span><span class="pln"> c</span><span class="pun">==</span><span class="pln"> a</span><span class="pun">)</span></code></pre>
+
+<p>is redundant. Shorter is</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">a </span><span class="pun">==</span><span class="pln"> b </span><span class="pun">&amp;&amp;</span><span class="pln"> b</span><span class="pun">==</span><span class="pln"> c</span><span class="pun">)</span></code></pre>
+
+<p>because in this case <code>a == c</code> holds always true.</p>
+
+<p>Also you should test the following</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">a </span><span class="pun">+</span><span class="pln"> b </span><span class="pun">&lt;</span><span class="pln"> c </span><span class="pun">||</span><span class="pln"> a </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">&lt;</span><span class="pln"> b </span><span class="pun">||</span><span class="pln"> b </span><span class="pun">+</span><span class="pln"> c </span><span class="pun">&lt;</span><span class="pln"> a</span><span class="pun">)</span></code></pre>
+
+<p>because in this case it is no triangle.</p>
+
+<p>Else I personally cannot see how to really improve the conditions.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://codereview.stackexchange.com/a/18464" title="short permalink to this answer" class="short-link" id="link-post-18464">share</a><span class="lsep">|</span><a href="http://codereview.stackexchange.com/posts/18464/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td class="post-signature" align="right">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://codereview.stackexchange.com/posts/18464/revisions" title="show all edits to this post">edited <span title="2012-11-11 19:01:03Z" class="relativetime">Nov 11 '12 at 19:01</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        <br>
+        
+    </div>
+</div>    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-11-11 17:19:52Z" class="relativetime">Nov 11 '12 at 17:19</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://codereview.stackexchange.com/users/19139/uwe-plonus"><div class="gravatar-wrapper-32"><img src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/48c7ae0b99bfe154c31f51f68fa2eb4e.jpg" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://codereview.stackexchange.com/users/19139/uwe-plonus">Uwe Plonus</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">290</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="12 bronze badges"><span class="badge3"></span><span class="badgecount">12</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18464" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="1" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-29442" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Actually, if <code>a + b &gt; c</code> etc.  then it <i>is</i> a valid triangle; if <code>a + b &lt; c</code> etc. then the triangle is invalid.</span>
+                –&nbsp;
+                    <a href="http://codereview.stackexchange.com/users/9390/codesparkle" title="4260 reputation" class="comment-user">codesparkle</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29442_18464"><span title="2012-11-11 17:53:31Z" class="relativetime-clean">Nov 11 '12 at 17:53</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 4 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-29444" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">My fault. I meant <code>c &gt; a + b</code>. Long time ago that I had math in school. Corrected answer.</span>
+                –&nbsp;
+                    <a href="http://codereview.stackexchange.com/users/19139/uwe-plonus" title="290 reputation" class="comment-user">Uwe Plonus</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29444_18464"><span title="2012-11-11 18:52:19Z" class="relativetime-clean">Nov 11 '12 at 18:52</span></a></span>
+                    <span class="edited-yes" title="this comment was edited 1 time"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-29449" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">One post below points out 
+only the longest edge cannot be less than sum of the other two. Do we 
+test only that or sum of any two must not be less than the third ?</span>
+                –&nbsp;
+                    <a href="http://codereview.stackexchange.com/users/16199/phoenix" title="192 reputation" class="comment-user owner">Phoenix</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29449_18464"><span title="2012-11-11 21:32:11Z" class="relativetime-clean">Nov 11 '12 at 21:32</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-29453" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I don't understand your 
+question. The longest edge cannot be longer than the sum of the other 
+two therefore we have to check all edges. The code in the next answer 
+does the same as my code, it is only structured in another way.</span>
+                –&nbsp;
+                    <a href="http://codereview.stackexchange.com/users/19139/uwe-plonus" title="290 reputation" class="comment-user">Uwe Plonus</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29453_18464"><span title="2012-11-11 22:26:02Z" class="relativetime-clean">Nov 11 '12 at 22:26</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-29463" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I meant to say you are 
+checking for sum of any two sides not greater than 3rd (for all the 
+sides) but the code below checks only for the max side is less than sum 
+of the other two sides.</span>
+                –&nbsp;
+                    <a href="http://codereview.stackexchange.com/users/16199/phoenix" title="192 reputation" class="comment-user owner">Phoenix</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29463_18464"><span title="2012-11-12 00:40:54Z" class="relativetime-clean">Nov 12 '12 at 0:40</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-18464" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link " title="expand to show all comments on this post, or add one of your own" href="#" onclick="">show <b>1</b> more comment</a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="18465"></a>
+<div id="answer-18465" class="answer" data-answerid="18465" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+    <input name="_id_" value="18465" type="hidden">
+    <a class="vote-up-off" title="This answer is useful">up vote</a>
+    <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+    <a class="vote-down-off" title="This answer is not useful">down vote</a>
+    
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>You've missed an error case called the "triangle inequality": the 
+longest edge can't be longer than the sum of the other two. (If it's the
+ same length then you probably want to consider that an error too 
+because it reduces to a line segment). To test this robustly requires 
+taking into account overflow.</p>
+
+<p>It's a bit odd that you throw an Exception for some errors but return
+ an error value for others. Since you're writing Java rather than C, 
+favour throwing exceptions for exceptional cases.</p>
+
+<pre style="" class="lang-java prettyprint prettyprinted"><code><span class="pln">    </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pln"> getType</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> b</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> c</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">a</span><span class="pun">&lt;=</span><span class="lit">0</span><span class="pun">||</span><span class="pln">b</span><span class="pun">&lt;=</span><span class="lit">0</span><span class="pun">||</span><span class="pln">c</span><span class="pun">&lt;=</span><span class="lit">0</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">IllegalArgumentException</span><span class="pun">(</span><span class="str">"Length of sides cannot be equal to or less than zero"</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="kwd">int</span><span class="pln"> max </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">max</span><span class="pun">(</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">max</span><span class="pun">(</span><span class="pln">a</span><span class="pun">,</span><span class="pln"> b</span><span class="pun">),</span><span class="pln"> c</span><span class="pun">);</span><span class="pln"> </span><span class="com">// Or use :? if you prefer</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">max </span><span class="pun">==</span><span class="pln"> a</span><span class="pun">)</span><span class="pln">
+            checkTriangleInequality</span><span class="pun">(</span><span class="pln">a</span><span class="pun">,</span><span class="pln"> b</span><span class="pun">,</span><span class="pln"> c</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">max </span><span class="pun">==</span><span class="pln"> b</span><span class="pun">)</span><span class="pln">
+            checkTriangleInequality</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> c</span><span class="pun">);</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> checkTriangleInequality</span><span class="pun">(</span><span class="pln">c</span><span class="pun">,</span><span class="pln"> a</span><span class="pun">,</span><span class="pln"> b</span><span class="pun">);</span><span class="pln">
+
+        </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">a</span><span class="pun">==</span><span class="pln">b</span><span class="pun">&amp;&amp;</span><span class="pln">b</span><span class="pun">==</span><span class="pln">c</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pun">.</span><span class="pln">EQUILATERAL</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pun">((</span><span class="pln">a</span><span class="pun">==</span><span class="pln">b</span><span class="pun">)||(</span><span class="pln">b</span><span class="pun">==</span><span class="pln">c</span><span class="pun">)||(</span><span class="pln">c</span><span class="pun">==</span><span class="pln">a</span><span class="pun">))</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pun">.</span><span class="pln">ISOSCELES</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Triangle</span><span class="pun">.</span><span class="pln">SCALENE</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> checkTriangleInequality</span><span class="pun">(</span><span class="kwd">int</span><span class="pln"> max</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> x</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">int</span><span class="pln"> y</span><span class="pun">)</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// Assume that we've already checked all three are &gt; 0.</span><span class="pln">
+        </span><span class="com">// Therefore if x + y &lt; 0 the sum overflowed and is greater than max.</span><span class="pln">
+        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">x </span><span class="pun">+</span><span class="pln"> y </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> x </span><span class="pun">+</span><span class="pln"> y </span><span class="pun">&lt;=</span><span class="pln"> max</span><span class="pun">)</span><span class="pln">
+            </span><span class="kwd">throw</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">IllegalArgumentException</span><span class="pun">(</span><span class="str">"Triangle inequality violated"</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://codereview.stackexchange.com/a/18465" title="short permalink to this answer" class="short-link" id="link-post-18465">share</a><span class="lsep">|</span><a href="http://codereview.stackexchange.com/posts/18465/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2012-11-11 17:27:33Z" class="relativetime">Nov 11 '12 at 17:27</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://codereview.stackexchange.com/users/1402/peter-taylor"><div class="gravatar-wrapper-32"><img src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/fd977ec3fe1f515ad6f496a17eed88de.png" alt=""></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://codereview.stackexchange.com/users/1402/peter-taylor">Peter Taylor</a><br>
+        <span class="reputation-score" title="reputation score " dir="ltr">1,527</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-18465" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-29443" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Thanks for the input. How would you deal with overflow ?</span>
+                –&nbsp;
+                    <a href="http://codereview.stackexchange.com/users/16199/phoenix" title="192 reputation" class="comment-user owner">Phoenix</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29443_18465"><span title="2012-11-11 18:18:47Z" class="relativetime-clean">Nov 11 '12 at 18:18</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-29456" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">@Phoenix, see the comment in <code>checkTriangleInequality</code>.</span>
+                –&nbsp;
+                    <a href="http://codereview.stackexchange.com/users/1402/peter-taylor" title="1527 reputation" class="comment-user">Peter Taylor</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="#comment29456_18465"><span title="2012-11-11 23:07:11Z" class="relativetime-clean">Nov 11 '12 at 23:07</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+            <div id="comments-link-18465" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span><a class="js-show-link comments-link dno" title="expand to show all comments on this post, or add one of your own" href="#" onclick=""></a>
+            </div>
+    </td>
+</tr>    </tbody></table>
+</div>
+									<a name="new-answer"></a>
+						<form id="post-form" action="/questions/18463/answer/submit" method="post" class="post-form">
+						    <input id="post-id" value="18463" type="hidden">
+                            <input id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" type="hidden">
+							<h2 class="space">Your Answer</h2>
+
+
+        <script>
+            StackExchange.ifUsing("editor", function () {
+                return StackExchange.using("mathjaxEditing", function () {
+                    StackExchange.MarkdownEditor.creationCallbacks.add(function (editor, postfix) {
+                        StackExchange.mathjaxEditing.prepareWmdForMathJax(editor, postfix, [["\\$", "\\$"]]);
+                    });
+                });
+            }, "mathjax-editing");
+        </script>
+
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+         
+        prepareEditor({
+            heartbeatType: 'answer',
+            bindNavPrevention: true,
+            postfix: "",
+            onDemand: true,
+            discardSelector: ".discard-answer"
+            ,immediatelyShowMarkdownHelp:true
+        });
+        
+
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li style="left: 0px;" class="wmd-button" id="wmd-bold-button"><span style="background-position: 0px -20px;"></span></li><li style="left: 25px;" class="wmd-button" id="wmd-italic-button"><span style="background-position: -20px -20px;"></span></li><li style="left: 50px;" class="wmd-spacer" id="wmd-spacer1"><span style="background-position: -40px -20px;"></span></li><li style="left: 75px;" class="wmd-button" id="wmd-link-button"><span style="background-position: -40px -20px;"></span></li><li style="left: 100px;" class="wmd-button" id="wmd-quote-button"><span style="background-position: -60px -20px;"></span></li><li style="left: 125px;" class="wmd-button" id="wmd-code-button"><span style="background-position: -80px -20px;"></span></li><li style="left: 150px;" class="wmd-button" id="wmd-image-button"><span style="background-position: -100px -20px;"></span></li><li style="left: 175px;" class="wmd-spacer" id="wmd-spacer2"><span style="background-position: -120px -20px;"></span></li><li style="left: 200px;" class="wmd-button" id="wmd-olist-button"><span style="background-position: -120px -20px;"></span></li><li style="left: 225px;" class="wmd-button" id="wmd-ulist-button"><span style="background-position: -140px -20px;"></span></li><li style="left: 250px;" class="wmd-button" id="wmd-heading-button"><span style="background-position: -160px -20px;"></span></li><li style="left: 275px;" class="wmd-button" id="wmd-hr-button"><span style="background-position: -180px -20px;"></span></li><li style="left: 300px;" class="wmd-spacer" id="wmd-spacer3"><span style="background-position: -200px -20px;"></span></li><li style="left: 325px;" class="wmd-button" id="wmd-undo-button"><span style="background-position: -200px -20px;"></span></li><li style="left: 350px;" class="wmd-button" id="wmd-redo-button"><span style="background-position: -220px -20px;"></span></li></ul></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="96a6b8c4067578a97c966ad8674a6cee" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+</div>
+							<div style="position: relative;">
+								
+            <div class="form-item new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="http://codereview.stackexchange.com/users/login?returnurl=%2fquestions%2f18463%2fthree-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Stack Exchange</span></p>
+                        </div>
+                    </div>
+                    <input name="manual-openid" class="manual-openid" type="hidden">
+                    <input name="use-facebook" class="use-facebook" value="false" type="hidden">
+                    <input class="submit-openid" value="Submit" style="display:none" type="button">
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" size="30" maxlength="30" tabindex="105" type="text">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" size="30" maxlength="100" tabindex="106" type="text">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </tbody></table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', '%2fquestions%2f18463%2fthree-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ%23new-answer');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <script>
+                StackExchange.ready(function () {
+                    StackExchange.helpers.bindHelpOverlayEvents($('.vm input'));
+                });
+            </script>
+            <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="text" size="30" maxlength="100" value="" tabindex="106">
+                    <span class="edit-field-overlay">required, but not shown</span>
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" value="Post Your Answer" tabindex="110" type="submit">
+									<a href="#" class="discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p>
+<input name="legalLinksShown" value="1" type="hidden">								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://codereview.stackexchange.com/questions/tagged/java" class="post-tag" title="show questions tagged 'java'" rel="tag">java</a>  or <a href="http://codereview.stackexchange.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2012-11-11 16:57:39Z"><b>1 year ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>6817 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://codereview.stackexchange.com/questions/18463/three-integer-inputs-and-determine-the-triangle-type-is-it-iso-scalene-or-equ?lastactivity" class="lastactivity-link" title="2012-11-11 19:01:03Z">1 year ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<style type="text/css">
+    .ads { margin-left: 60px; }
+    .ad-container { width: 220px; height: 250px; margin-right: 20px; margin-bottom: 20px; }
+    .ad-container .ad { height: 250px; }
+    .ad-container .footer-container { overflow: hidden; height: 30px; position: relative; top: -30px; }
+    .ad-container .footer-container .footer { font-family: Arial,Helvetic,Sans-Serif; font-size: 12px; text-align: center; padding-top: 9px; background-color: #000; color: #EFF; opacity: 0.9; filter: alpha(opacity=90); top: 30px; height: 30px; position: relative; }
+    .ad-container a:hover { text-decoration: underline; }
+    #adzerk2 { height: 250px; }
+</style>
+<script>
+    StackExchange.ready(function () {
+        $(".ad-container").hover(
+            function () {
+                $(".ad-container .footer-container .footer").stop(true, true).animate({ top: "0px" }, "fast");
+            },
+            function () {
+                $(".ad-container .footer-container .footer").animate({ top: "30px" }, "fast");
+            });
+    });
+</script>
+    <script>
+        var z = document.createElement("script"); z.async = true; z.src = '//engine.adzerk.net/z/12057/adzerk2_2_17_76?keywords=x-host-codereview.stackexchange.com'; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);
+    </script>
+    <div class="everyonelovesstackoverflow" id="adzerk2"><div id="SE20-ad-container" style="height: 250px; width: 220px;">
+<style>
+#launched-ad { width: 220px; height: 250px; overflow: hidden; background: url(//cdn.sstatic.net/stackexchange/Img/launched-ads/apple.png) no-repeat bottom center; }
+#launched-ad-link { display: block; width: 220px; height: 250px; line-height: 1.2; color: #285A86 !important; font-family: "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,sans-serif; font-size: 20px; line-height: 26px; text-shadow: 0 1px 0 #fff; text-decoration: none; cursor: pointer; }
+#launched-ad-inner { width: 190px; margin: 15px 15px 0 15px;}
+</style>
+<a id="launched-ad-link" href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjoxMTYxLCJjaCI6MTE5OCwiY3IiOjMxOTQsImRpIjoiYTk0ZTIzYjUyYjQ4NDQwMWFkZDk2ZGQ1YjkyODExMmUiLCJkbSI6MSwiZmMiOjQ2NDksImZsIjozMzM1LCJpcCI6IjcyLjIwNS4yNTUuMTYwIiwia3ciOiJ4LWhvc3QtY29kZXJldmlldy5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsInByIjoxNzU2LCJydCI6MSwic3QiOjEyMDU3LCJ1ayI6InVlMS04MzVmZWU4OTZmMmY0ZTVlOGE3NzhlNDkwNjI1MDgzZiIsInpuIjo3NiwidHMiOjE0MDkwMDMxOTM5MzMsInVyIjpudWxsfQ&amp;s=L7-wrLCbijzwPGjIw4qmglIbzjM&amp;url=http%3A%2F%2Fapple.stackexchange.com%2Fquestions%2F143140%2Fhow-do-sync-programs-get-around-the-ios-sandbox">
+    <div id="launched-ad">
+        <div id="launched-ad-inner">how do sync programs get around the iOS sandbox</div>
+    </div>
+</a>
+</div><script type="text/javascript">window._launchedAdUrl= "http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6MTcsImNtIjoxMTYxLCJjaCI6MTE5OCwiY3IiOjMxOTQsImRpIjoiYTk0ZTIzYjUyYjQ4NDQwMWFkZDk2ZGQ1YjkyODExMmUiLCJkbSI6MSwiZmMiOjQ2NDksImZsIjozMzM1LCJpcCI6IjcyLjIwNS4yNTUuMTYwIiwia3ciOiJ4LWhvc3QtY29kZXJldmlldy5zdGFja2V4Y2hhbmdlLmNvbSIsIm53IjoyMiwicGMiOjAsInByIjoxNzU2LCJydCI6MSwic3QiOjEyMDU3LCJ1ayI6InVlMS04MzVmZWU4OTZmMmY0ZTVlOGE3NzhlNDkwNjI1MDgzZiIsInpuIjo3NiwidHMiOjE0MDkwMDMxOTM5MzMsInVyIjpudWxsfQ&s=L7-wrLCbijzwPGjIw4qmglIbzjM";</script><script src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/js.js" type="text/javascript"></script><img src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/i.gif" style="position:absolute;" border="0" height="0px" width="0px"></div>
+			  
+    
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/7027?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">2
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/7027/converting-input-from-a-filereader-to-json-and-outputting-it-again?rq=1" class="question-hyperlink">Converting input from a FileReader to JSON and outputting it again</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/31778?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">1
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/31778/is-there-a-way-i-can-make-this-code-look-cleaner?rq=1" class="question-hyperlink">Is there a way I can make this code look cleaner?</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/33868?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">4
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/33868/determining-possible-triangle-from-lengths-of-line-segments?rq=1" class="question-hyperlink">Determining possible triangle from lengths of line segments</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/38247?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">5
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/38247/inputting-and-sorting-three-integers?rq=1" class="question-hyperlink">Inputting and sorting three integers</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/46131?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes answered-accepted default">5
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/46131/pascal-triangle-produced-for-a-particular-integer-k?rq=1" class="question-hyperlink">Pascal triangle produced for a particular integer K</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/47126?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">3
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/47126/given-an-integer-array-of-size-n-find-any-three-numbers?rq=1" class="question-hyperlink">Given an integer array of size n, find any three numbers</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/54831?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">2
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/54831/determine-if-subset-in-int-array-adds-up-to-a-given-input-integer?rq=1" class="question-hyperlink">Determine if subset in int array adds up to a given input integer</a>
+</div>
+<div class="spacer js-gps-track">
+<a href="http://codereview.stackexchange.com/q/58800?rq=1" title="Vote score (upvotes - downvotes)">
+    <div class="answer-votes default">3
+    </div>
+</a><a href="http://codereview.stackexchange.com/questions/58800/making-sure-user-inputs-correct-type?rq=1" class="question-hyperlink">Making sure user inputs correct type</a>
+</div>
+
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module">
+    <h4>
+        <a href="http://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-ux" title="User Experience Stack Exchange"></div><a href="http://ux.stackexchange.com/questions/63422/does-the-oxford-comma-increase-readability" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:102 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does the Oxford Comma increase readability?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="http://workplace.stackexchange.com/questions/32864/should-i-clean-my-pc-before-leaving" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Should I clean my PC before leaving?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/197844/rounding-a-number-to-its-hundred" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Rounding a number to its hundred
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/197864/azimuth-shading" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Azimuth shading
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/179377/block-matrix-determinant" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Block Matrix determinant
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/74868/single-year-column-and-multiple-weeks-columns-into-single-year-week-column-with" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Single year column and multiple weeks columns into single year/week column with PIVOT
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/193147/what-is-the-meaning-of-a-c-or-d-c" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is the meaning of "A.C. or D.C.?"
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/27543/my-student-told-me-his-mother-has-cancer-what-do-i-do" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    My student told me his mother has cancer, what do I do?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/908964/limit-of-a-polynomial-fraction" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Limit of a polynomial fraction
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-cooking" title="Seasoned Advice"></div><a href="http://cooking.stackexchange.com/questions/46636/is-there-no-use-for-high-temperatures-in-ovens" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:49 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there no use for high temperatures in ovens?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/46735/how-to-determine-difficulty-class-for-skills" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to determine Difficulty Class for skills?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-joomla" title="Joomla Stack Exchange"></div><a href="http://joomla.stackexchange.com/questions/4207/where-can-i-find-list-of-the-available-joomla-wysiwyg-editor-buttons-etc" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:555 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Where can I find list of the available Joomla-WYSIWYG-Editor buttons etc
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div><a href="http://bicycles.stackexchange.com/questions/24352/difference-between-wet-and-dry-chain-lube" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Difference between wet and dry chain lube
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/113191/in-a-bursty-dataset-how-do-you-filter-for-the-few-important-values-that-make" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    In a "bursty" dataset, how do you filter for the few
+ important values that make up the bulk of the information?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/908857/stuck-solving-a-nonlinear-inequality" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Stuck solving a nonlinear inequality
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/36298/what-are-the-downsides-that-prevent-more-people-from-working-in-high-income-coun" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are the downsides that prevent more people from
+ working in high-income countries, and then retiring in low-income (and 
+cost of living) ones?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-gardening" title="Gardening &amp; Landscaping Stack Exchange"></div><a href="http://gardening.stackexchange.com/questions/13816/how-would-you-trellis-a-melon-plant" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:269 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How would you trellis a melon plant?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-aviation" title="Aviation Stack Exchange"></div><a href="http://aviation.stackexchange.com/questions/8322/credit-card-readers-in-commercial-aircraft" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:528 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Credit Card readers in commercial aircraft
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-apple" title="Ask Different"></div><a href="http://apple.stackexchange.com/questions/143140/how-do-sync-programs-get-around-the-ios-sandbox" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:118 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    how do sync programs get around the iOS sandbox
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-electronics" title="Electrical Engineering Stack Exchange"></div><a href="http://electronics.stackexchange.com/questions/126461/will-my-circuit-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:135 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Will my circuit work?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/35656/what-makes-a-backpack-a-womens-backpack" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What makes a backpack a women's backpack?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-stats" title="Cross Validated"></div><a href="http://stats.stackexchange.com/questions/113205/simulation-involving-conditioning-on-sum-of-random-variables" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:65 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Simulation involving conditioning on sum of random variables
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/58137/what-is-my-problem-with-meshfunction" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is my problem with MeshFunction?
+                </a>
+
+            </li>
+            <li style="display: list-item;" class="dno js-hidden">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="http://english.stackexchange.com/questions/193070/term-meaning-careful-and-thorough-almost-excessively-so" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Term meaning careful and thorough, almost excessively so
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://codereview.stackexchange.com/feeds/question/18463" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/18463/ivc/29b1');});
+</script>
+<noscript>
+    <div><img src="/posts/18463/ivc/29b1" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">lang-java</div></div>
+
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                        <a href="http://codereview.stackexchange.com/tour">tour</a>
+                    <a href="http://codereview.stackexchange.com/help">help</a>
+                        <a href="http://codereview.stackexchange.com/help/badges">badges</a>
+                    <a href="http://blog.stackexchange.com/?blb=1">blog</a>
+                        <a href="http://chat.stackexchange.com/">chat</a>
+                    <a href="http://data.stackexchange.com/">data</a>
+                    <a href="http://stackexchange.com/legal">legal</a>
+                    <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackexchange.com/work-here">work here</a>
+                    <a href="http://stackexchange.com/mediakit">advertising info</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="http://codereview.stackexchange.com/contact">contact us</a></b>
+                        <b><a href="http://meta.codereview.stackexchange.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="professional system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://programmers.stackexchange.com/" title="professional programmers interested in conceptual questions about software development">Programmers</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems.">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="Information security professionals">Information Security</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Mathematica">Mathematica</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (14)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (10)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (21)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="http://careers.stackoverflow.com/">Stack Overflow Careers</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+
+            <div id="copyright">
+                site design / logo © 2014 stack exchange inc; user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2014.8.25.1793
+            </div>
+            
+        </div>
+    <iframe id="global-auth-frame" style="display:none" src="java%20-%20Three%20integer%20inputs%20and%20determine%20the%20triangle%20type.%20Is%20it%20Iso,%20scalene,%20or%20equilateral%20or%20output%20error.%20-%20Code%20Review%20Stack%20Exchange_files/read.html"></iframe></div>
+    <noscript>
+        <div id="noscript-warning">Code Review Stack Exchange works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-24', '.stackexchange.com');
+        
+        
+        ga('set', 'dimension2', '|java|');         
+        ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>        
+    
+    
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px none; margin: 0px;"><div style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px none; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-size-adjust: none; font-family: STIXSizeOneSym,sans-serif;" id="MathJax_Font_Test"></div></div></body></html>
